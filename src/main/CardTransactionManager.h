@@ -25,6 +25,11 @@ namespace generic {
 class CardTransactionManager {
 public:
     /**
+     * 
+     */
+    virtual ~CardTransactionManager() = default;
+
+    /**
      * Prepares an APDU to be transmitted the next time processApdusToByteArrays()} is
      * invoked.
      *
@@ -62,8 +67,8 @@ public:
                                                 const uint8_t ins, 
                                                 const uint8_t p1, 
                                                 const uint8_t p2, 
-                                                const std::vector<uint8_t> dataIn, 
-                                                const uint8_t le);
+                                                const std::vector<uint8_t>& dataIn, 
+                                                const uint8_t le) = 0;
 
     /**
      * Prepares an APDU to be transmitted the next time processApdusToByteArrays() is
@@ -82,7 +87,7 @@ public:
                                                 const uint8_t ins, 
                                                 const uint8_t p1, 
                                                 const uint8_t p2, 
-                                                const std::vector<uint8_t> dataIn);
+                                                const std::vector<uint8_t>& dataIn) = 0;
 
     /**
      * Requests the closing of the physical channel after the next transmission of APDUs.

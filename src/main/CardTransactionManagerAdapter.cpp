@@ -70,7 +70,7 @@ CardTransactionManager& CardTransactionManagerAdapter::prepareApdu(
     const uint8_t ins, 
     const uint8_t p1, 
     const uint8_t p2, 
-    const std::vector<uint8_t> dataIn, 
+    const std::vector<uint8_t>& dataIn, 
     const uint8_t le)
 {
     mApduRequests.push_back(
@@ -84,7 +84,7 @@ CardTransactionManager& CardTransactionManagerAdapter::prepareApdu(
     const uint8_t ins, 
     const uint8_t p1, 
     const uint8_t p2, 
-    const std::vector<uint8_t> dataIn)
+    const std::vector<uint8_t>& dataIn)
 {
     mApduRequests.push_back(
         std::make_shared<ApduRequestAdapter>(ApduUtil::build(cla, ins, p1, p2, dataIn)));

@@ -68,7 +68,8 @@ GenericCardSelection& GenericCardSelectionAdapter::filterByPowerOnData(
     try {
         Pattern::compile(powerOnDataRegex);
     } catch (const PatternSyntaxException& e) {
-        throw IllegalArgumentException("Invalid regular expression: " + powerOnDataRegex));
+        (void)e;
+        throw IllegalArgumentException("Invalid regular expression: " + powerOnDataRegex);
     }
 
     mCardSelector->filterByPowerOnData(powerOnDataRegex);

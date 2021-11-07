@@ -33,6 +33,8 @@ using namespace calypsonet::terminal::card;
 using namespace calypsonet::terminal::reader;
 using namespace keyple::core::common;
 
+GenericExtensionService GenericExtensionService::INSTANCE;
+
 GenericExtensionService::GenericExtensionService() {}
 
 GenericExtensionService& GenericExtensionService::getInstance()

@@ -38,7 +38,7 @@ using namespace calypsonet::terminal::reader::selection::spi;
 
 /**
  * (package-private)<br>
- * Implementation of {@link CardTransactionManager}.
+ * Implementation of CardTransactionManager.
  *
  * @since 2.0.0
  */
@@ -84,7 +84,7 @@ public:
                                         const uint8_t ins, 
                                         const uint8_t p1, 
                                         const uint8_t p2, 
-                                        const std::vector<uint8_t> dataIn, 
+                                        const std::vector<uint8_t>& dataIn, 
                                         const uint8_t le) override;
 
     /**
@@ -96,7 +96,7 @@ public:
                                         const uint8_t ins, 
                                         const uint8_t p1, 
                                         const uint8_t p2, 
-                                        const std::vector<uint8_t> dataIn) override;
+                                        const std::vector<uint8_t>& dataIn) override;
 
     /**
      * {@inheritDoc}
