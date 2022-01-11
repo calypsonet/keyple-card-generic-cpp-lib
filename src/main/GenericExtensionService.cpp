@@ -60,19 +60,19 @@ std::shared_ptr<CardResourceProfileExtension>
     return std::make_shared<GenericCardResourceProfileExtensionAdapter>(genericCardSelection);
 }
 
-const std::string& GenericExtensionService::getCardApiVersion() const 
+const std::string& GenericExtensionService::getCardApiVersion() const
 {
-    return CardApiProperties::VERSION;
+    return CardApiProperties_VERSION;
 }
 
 const std::string& GenericExtensionService::getReaderApiVersion() const
 {
-    return ReaderApiProperties::VERSION;
+    return ReaderApiProperties_VERSION;
 }
 
 const std::string& GenericExtensionService::getCommonApiVersion() const
 {
-    return CommonApiProperties::VERSION;
+    return CommonApiProperties_VERSION;
 }
 
 }
