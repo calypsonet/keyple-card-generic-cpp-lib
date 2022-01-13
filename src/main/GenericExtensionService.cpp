@@ -33,13 +33,17 @@ using namespace calypsonet::terminal::card;
 using namespace calypsonet::terminal::reader;
 using namespace keyple::core::common;
 
-GenericExtensionService GenericExtensionService::INSTANCE;
+std::shared_ptr<GenericExtensionService> GenericExtensionService::mInstance;
 
 GenericExtensionService::GenericExtensionService() {}
 
-GenericExtensionService& GenericExtensionService::getInstance()
+std::shared_ptr<GenericExtensionService> GenericExtensionService::getInstance()
 {
-    return INSTANCE;
+    if (mInstance == nullptr) {
+        mInstance = std::shared_ptr<GenericExtensionService>(new GenericExtensionService());
+    }
+
+    return mInstance;
 }
 
 std::shared_ptr<GenericCardSelection> GenericExtensionService::createCardSelection()

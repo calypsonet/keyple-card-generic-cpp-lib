@@ -49,10 +49,10 @@ public:
      *
      * @return A not null reference.
      */
-    static GenericExtensionService& getInstance();
+    static std::shared_ptr<GenericExtensionService> getInstance();
 
     /**
-     * Creates an instance of {@link GenericCardSelection}.
+     * Creates an instance of GenericCardSelection.
      *
      * @return A not null reference.
      * @since 2.0.0
@@ -60,7 +60,7 @@ public:
     std::shared_ptr<GenericCardSelection> createCardSelection();
 
     /**
-     * Creates an instance of {@link CardTransactionManager}.
+     * Creates an instance of CardTransactionManager.
      *
      * @param reader The reader through which the card communicates.
      * @param card The initial card data provided by the selection process.
@@ -71,7 +71,7 @@ public:
         std::shared_ptr<CardReader> reader, std::shared_ptr<SmartCard> card);
 
     /**
-     * Creates an instance of {@link CardResourceProfileExtension} to be provided to the {@link
+     * Creates an instance of CardResourceProfileExtension to be provided to the {@link
      * org.eclipse.keyple.core.service.resource.CardResourceService}.
      *
      * <p>The provided argument defines the selection rules to be applied to the card when detected
@@ -108,15 +108,14 @@ public:
 
 private:
     /**
-     * 
+     *
      */
-    static GenericExtensionService INSTANCE;
+    static std::shared_ptr<GenericExtensionService> mInstance;
 
     /**
      * Constructor
      */
     GenericExtensionService();
-
 };
 
 }
