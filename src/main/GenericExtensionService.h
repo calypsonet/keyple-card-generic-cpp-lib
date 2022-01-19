@@ -20,6 +20,7 @@
 /* Keyple Card Generic */
 #include "CardTransactionManagerAdapter.h"
 #include "GenericCardSelection.h"
+#include "KeypleCardGenericExport.h"
 
 /* Calypsonet Terminal Reader */
 #include "CardReader.h"
@@ -42,7 +43,7 @@ using namespace keyple::core::service::resource::spi;
  *
  * @since 2.0.0
  */
-class GenericExtensionService final : public KeypleCardExtension {
+class KEYPLECARDGENERIC_API GenericExtensionService final : public KeypleCardExtension {
 public:
     /**
      * Gets the unique instance of this object.

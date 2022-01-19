@@ -73,7 +73,7 @@ ADD_LIBRARY(
     ${CMAKE_CURRENT_SOURCE_DIR}/GenericCardResourceProfileExtensionAdapter.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/GenericCardSelectionAdapter.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/GenericCardSelectionRequestAdapter.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/GenericExtensionService.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/GenericExtensionService.cpp 
 )
 
 TARGET_LINK_LIBRARIES(${LIBRARY_NAME} ${KEYPLE_UTIL_LIB})

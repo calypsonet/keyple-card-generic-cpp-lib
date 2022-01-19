@@ -58,7 +58,7 @@ CardTransactionManager& CardTransactionManagerAdapter::prepareApdu(const std::st
 CardTransactionManager& CardTransactionManagerAdapter::prepareApdu(
     const std::vector<uint8_t>& apduCommand)
 {
-    Assert::getInstance().isInRange(apduCommand.size(), 5, 251, "length");
+    Assert::getInstance().isInRange(static_cast<int>(apduCommand.size()), 5, 251, "length");
 
     mApduRequests.push_back(std::make_shared<ApduRequestAdapter>(apduCommand));
     

@@ -79,7 +79,10 @@ GenericCardSelection& GenericCardSelectionAdapter::filterByPowerOnData(
 
 GenericCardSelection& GenericCardSelectionAdapter::filterByDfName(const std::vector<uint8_t>& aid)
 {
-    Assert::getInstance().isInRange(aid.size(), AID_MIN_LENGTH, AID_MAX_LENGTH, "aid");
+    Assert::getInstance().isInRange(static_cast<int>(aid.size()),
+                                    AID_MIN_LENGTH, 
+                                    AID_MAX_LENGTH,
+                                    "aid");
 
     mCardSelector->filterByDfName(aid);
     
