@@ -12,6 +12,8 @@
 
 #pragma once
 
+#include <memory>
+#include <ostream>
 #include <string>
 #include <vector>
 
@@ -86,24 +88,29 @@ public:
      */
     const std::string& getInfo() const override;
 
+    /**
+     *
+     */
+    friend std::ostream& operator<<(std::ostream& os, const std::shared_ptr<ApduRequestAdapter> ara);
+
 private:
     /**
-     * 
+     *
      */
     static const int DEFAULT_SUCCESSFUL_CODE;
 
     /**
-     * 
+     *
      */
     const std::vector<uint8_t> mApdu;
-    
+
     /**
-     * 
+     *
      */
     std::vector<int> mSuccessfulStatusWords;
-    
+
     /**
-     * 
+     *
      */
     std::string mInfo;
 };

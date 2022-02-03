@@ -12,6 +12,9 @@
 
 #include "ApduRequestAdapter.h"
 
+/* Keyple Core Util */
+#include "KeypleStd.h"
+
 namespace keyple {
 namespace card {
 namespace generic {
@@ -24,14 +27,14 @@ ApduRequestAdapter::ApduRequestAdapter(const std::vector<uint8_t>& apdu)
 ApduRequestAdapter& ApduRequestAdapter::addSuccessfulStatusWord(const int successfulStatusWord)
 {
     mSuccessfulStatusWords.push_back(successfulStatusWord);
-    
+
     return *this;
 }
 
 ApduRequestAdapter& ApduRequestAdapter::setInfo(const std::string& info)
 {
     mInfo = info;
-    
+
     return *this;
 }
 
@@ -45,9 +48,21 @@ const std::vector<int>& ApduRequestAdapter::getSuccessfulStatusWords() const
     return mSuccessfulStatusWords;
 }
 
-const std::string& ApduRequestAdapter::getInfo() const 
+const std::string& ApduRequestAdapter::getInfo() const
 {
     return mInfo;
+}
+
+std::ostream& operator<<(std::ostream& os, const std::shared_ptr<ApduRequestAdapter> ara)
+{
+    os << "APDU_REQUEST_ADAPTER: {"
+       << "DEFAULT_SUCCESSFUL_CODE = " << ara->DEFAULT_SUCCESSFUL_CODE << ", "
+       << "APDU = " << ara->mApdu << ", "
+       << "SUCCESSFUL_STATUS_WORD = " << ara->mSuccessfulStatusWords << ", "
+       << "INFO = " << ara->mInfo
+       << "}";
+
+    return os;
 }
 
 }
