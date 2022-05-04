@@ -72,7 +72,7 @@ CardSelectorSpi& CardSelectorAdapter::setFileControlInformation(
 CardSelectorSpi& CardSelectorAdapter::addSuccessfulStatusWord(const int statusWord)
 {
     mSuccessfulSelectionStatusWords.push_back(statusWord);
-    
+
     return *this;
 }
 
@@ -86,17 +86,17 @@ const std::string& CardSelectorAdapter::getPowerOnDataRegex() const
     return mPowerOnDataRegex;
 }
 
-const std::vector<uint8_t> CardSelectorAdapter::getAid() const
+const std::vector<uint8_t>& CardSelectorAdapter::getAid() const
 {
     return mAid;
 }
 
-FileOccurrence CardSelectorAdapter::getFileOccurrence() const 
+FileOccurrence CardSelectorAdapter::getFileOccurrence() const
 {
     return mFileOccurrence;
 }
 
-FileControlInformation CardSelectorAdapter::getFileControlInformation() const 
+FileControlInformation CardSelectorAdapter::getFileControlInformation() const
 {
     return mFileControlInformation;
 }

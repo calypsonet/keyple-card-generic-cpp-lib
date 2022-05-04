@@ -38,8 +38,8 @@ using namespace keyple::core::util;
 
 const std::string CardTransactionManagerAdapter::APDU_COMMAND = "apduCommand";
 
-CardTransactionManagerAdapter::CardTransactionManagerAdapter(std::shared_ptr<CardReader> reader, 
-                                                             std::shared_ptr<SmartCard> card)
+CardTransactionManagerAdapter::CardTransactionManagerAdapter(std::shared_ptr<CardReader> reader,
+                                                             const std::shared_ptr<SmartCard> card)
 : mReader(reader), mChannelControl(ChannelControl::KEEP_OPEN)
 {
     Assert::getInstance().notNull(reader, "reader").notNull(card, "card");
@@ -51,7 +51,7 @@ CardTransactionManager& CardTransactionManagerAdapter::prepareApdu(const std::st
                          .isTrue(ByteArrayUtil::isValidHexString(apduCommand), APDU_COMMAND);
 
     prepareApdu(ByteArrayUtil::fromHex(apduCommand));
-    
+
     return *this;
 }
 
@@ -61,34 +61,34 @@ CardTransactionManager& CardTransactionManagerAdapter::prepareApdu(
     Assert::getInstance().isInRange(static_cast<int>(apduCommand.size()), 5, 251, "length");
 
     mApduRequests.push_back(std::make_shared<ApduRequestAdapter>(apduCommand));
-    
+
     return *this;
 }
 
 CardTransactionManager& CardTransactionManagerAdapter::prepareApdu(
-    const uint8_t cla, 
-    const uint8_t ins, 
-    const uint8_t p1, 
-    const uint8_t p2, 
-    const std::vector<uint8_t>& dataIn, 
+    const uint8_t cla,
+    const uint8_t ins,
+    const uint8_t p1,
+    const uint8_t p2,
+    const std::vector<uint8_t>& dataIn,
     const uint8_t le)
 {
     mApduRequests.push_back(
         std::make_shared<ApduRequestAdapter>(ApduUtil::build(cla, ins, p1, p2, dataIn, le)));
-    
+
     return *this;
 }
 
 CardTransactionManager& CardTransactionManagerAdapter::prepareApdu(
-    const uint8_t cla, 
-    const uint8_t ins, 
-    const uint8_t p1, 
-    const uint8_t p2, 
+    const uint8_t cla,
+    const uint8_t ins,
+    const uint8_t p1,
+    const uint8_t p2,
     const std::vector<uint8_t>& dataIn)
 {
     mApduRequests.push_back(
         std::make_shared<ApduRequestAdapter>(ApduUtil::build(cla, ins, p1, p2, dataIn)));
-    
+
     return *this;
 }
 
@@ -113,7 +113,7 @@ const std::vector<std::vector<uint8_t>> CardTransactionManagerAdapter::processAp
             std::dynamic_pointer_cast<ProxyReaderApi>(mReader)
                 ->transmitCardRequest(
                     std::make_shared<CardRequestAdapter>(mApduRequests, false), mChannelControl);
-    
+
     } catch (const ReaderBrokenCommunicationException& e) {
         throw TransactionException("Reader communication error.",
                                    std::make_shared<ReaderBrokenCommunicationException>(e));
@@ -121,12 +121,12 @@ const std::vector<std::vector<uint8_t>> CardTransactionManagerAdapter::processAp
         throw TransactionException("Card communication error.",
                                    std::make_shared<CardBrokenCommunicationException>(e));
     } catch (const UnexpectedStatusWordException& e) {
-        throw TransactionException("Apdu error.", 
+        throw TransactionException("Apdu error.",
                                    std::make_shared<UnexpectedStatusWordException>(e));
     }
-    
+
     mApduRequests.clear();
-    
+
     for (const auto& apduResponse : cardResponse->getApduResponses()) {
         apduResponsesBytes.push_back(apduResponse->getApdu());
     }
@@ -134,7 +134,7 @@ const std::vector<std::vector<uint8_t>> CardTransactionManagerAdapter::processAp
     return apduResponsesBytes;
 }
 
-const std::vector<std::string> CardTransactionManagerAdapter::processApdusToHexStrings() 
+const std::vector<std::string> CardTransactionManagerAdapter::processApdusToHexStrings()
 {
     const std::vector<std::vector<uint8_t>> apduResponsesBytes = processApdusToByteArrays();
     std::vector<std::string> apduResponsesHex;

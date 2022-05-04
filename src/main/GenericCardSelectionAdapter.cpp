@@ -37,14 +37,14 @@ const int GenericCardSelectionAdapter::AID_MAX_LENGTH = 16;
 GenericCardSelectionAdapter::GenericCardSelectionAdapter()
 : mCardSelector(std::make_shared<CardSelectorAdapter>()) {}
 
-std::shared_ptr<CardSelectionRequestSpi> GenericCardSelectionAdapter::getCardSelectionRequest()
-    const
+const std::shared_ptr<CardSelectionRequestSpi>
+    GenericCardSelectionAdapter::getCardSelectionRequest()
 {
         return std::make_shared<GenericCardSelectionRequestAdapter>(mCardSelector);
 }
 
-std::shared_ptr<SmartCardSpi> GenericCardSelectionAdapter::parse(
-    std::shared_ptr<CardSelectionResponseApi> cardSelectionResponse) const
+const std::shared_ptr<SmartCardSpi> GenericCardSelectionAdapter::parse(
+    const std::shared_ptr<CardSelectionResponseApi> cardSelectionResponse)
 {
     return std::make_shared<GenericCardAdapter>(cardSelectionResponse);
 }
@@ -73,31 +73,31 @@ GenericCardSelection& GenericCardSelectionAdapter::filterByPowerOnData(
     }
 
     mCardSelector->filterByPowerOnData(powerOnDataRegex);
-    
+
     return *this;
 }
 
 GenericCardSelection& GenericCardSelectionAdapter::filterByDfName(const std::vector<uint8_t>& aid)
 {
     Assert::getInstance().isInRange(static_cast<int>(aid.size()),
-                                    AID_MIN_LENGTH, 
+                                    AID_MIN_LENGTH,
                                     AID_MAX_LENGTH,
                                     "aid");
 
     mCardSelector->filterByDfName(aid);
-    
+
     return *this;
 }
 
 GenericCardSelection& GenericCardSelectionAdapter::filterByDfName(const std::string& aid)
 {
     filterByDfName(ByteArrayUtil::fromHex(aid));
-    
+
     return *this;
 }
 
 GenericCardSelection& GenericCardSelectionAdapter::setFileOccurrence(
-    const FileOccurrence fileOccurrence) 
+    const FileOccurrence fileOccurrence)
 {
     switch (fileOccurrence) {
     case FileOccurrence::FIRST:
@@ -113,7 +113,7 @@ GenericCardSelection& GenericCardSelectionAdapter::setFileOccurrence(
         mCardSelector->setFileOccurrence(CardSelectorSpi::FileOccurrence::PREVIOUS);
         break;
     }
-    
+
     return *this;
 }
 

@@ -45,21 +45,21 @@ using namespace calypsonet::terminal::reader::selection::spi;
 class CardTransactionManagerAdapter final : public CardTransactionManager {
 public:
     /**
-     * 
+     *
      */
     static const std::string APDU_COMMAND;
 
     /**
      * (package-private)<br>
-     * Creates an instance of {@link CardTransactionManager}.
+     * Creates an instance of CardTransactionManager.
      *
      * @param reader The reader through which the card communicates.
      * @param card The initial card data provided by the selection process.
      * @throw IllegalArgumentException If the card resource or one of its components is null.
      * @since 2.0.0
      */
-    CardTransactionManagerAdapter(std::shared_ptr<CardReader> reader, 
-                                  std::shared_ptr<SmartCard> card);
+    CardTransactionManagerAdapter(std::shared_ptr<CardReader> reader,
+                                  const std::shared_ptr<SmartCard> card);
 
     /**
      * {@inheritDoc}
@@ -80,11 +80,11 @@ public:
      *
      * @since 2.0.0
      */
-    CardTransactionManager& prepareApdu(const uint8_t cla, 
-                                        const uint8_t ins, 
-                                        const uint8_t p1, 
-                                        const uint8_t p2, 
-                                        const std::vector<uint8_t>& dataIn, 
+    CardTransactionManager& prepareApdu(const uint8_t cla,
+                                        const uint8_t ins,
+                                        const uint8_t p1,
+                                        const uint8_t p2,
+                                        const std::vector<uint8_t>& dataIn,
                                         const uint8_t le) override;
 
     /**
@@ -92,10 +92,10 @@ public:
      *
      * @since 2.0.0
      */
-    CardTransactionManager& prepareApdu(const uint8_t cla, 
-                                        const uint8_t ins, 
-                                        const uint8_t p1, 
-                                        const uint8_t p2, 
+    CardTransactionManager& prepareApdu(const uint8_t cla,
+                                        const uint8_t ins,
+                                        const uint8_t p1,
+                                        const uint8_t p2,
                                         const std::vector<uint8_t>& dataIn) override;
 
     /**
@@ -121,17 +121,17 @@ public:
 
 private:
     /**
-     * 
+     *
      */
     std::shared_ptr<CardReader> mReader;
 
     /**
-     * 
+     *
      */
     std::vector<std::shared_ptr<ApduRequestSpi>> mApduRequests;
 
     /**
-     * 
+     *
      */
     ChannelControl mChannelControl;
 };

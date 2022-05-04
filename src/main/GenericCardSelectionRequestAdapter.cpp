@@ -20,12 +20,12 @@ GenericCardSelectionRequestAdapter::GenericCardSelectionRequestAdapter(
    std::shared_ptr<CardSelectorSpi> cardSelector)
 : mCardSelector(cardSelector) {}
 
-std::shared_ptr<CardSelectorSpi> GenericCardSelectionRequestAdapter::getCardSelector() const
+const std::shared_ptr<CardSelectorSpi> GenericCardSelectionRequestAdapter::getCardSelector() const
 {
     return mCardSelector;
 }
 
-std::shared_ptr<CardRequestSpi> GenericCardSelectionRequestAdapter::getCardRequest() const
+const std::shared_ptr<CardRequestSpi> GenericCardSelectionRequestAdapter::getCardRequest() const
 {
     return nullptr;
 }

@@ -46,18 +46,18 @@ public:
      *
      * @since 2.0.0
      */
-    std::shared_ptr<CardSelectorSpi> getCardSelector() const;
+    const std::shared_ptr<CardSelectorSpi> getCardSelector() const;
 
     /**
      * {@inheritDoc}
      *
      * @since 2.0.0
      */
-    std::shared_ptr<CardRequestSpi> getCardRequest() const;
+    const std::shared_ptr<CardRequestSpi> getCardRequest() const;
 
 private:
     /**
-     * 
+     *
      */
     std::shared_ptr<CardSelectorSpi> mCardSelector;
 };

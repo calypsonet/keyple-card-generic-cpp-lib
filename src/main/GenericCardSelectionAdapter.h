@@ -50,15 +50,15 @@ public:
      *
      * @since 2.0.0
      */
-    std::shared_ptr<CardSelectionRequestSpi> getCardSelectionRequest() const override;
+    const std::shared_ptr<CardSelectionRequestSpi> getCardSelectionRequest() override;
 
     /**
      * {@inheritDoc}
      *
      * @since 2.0.0
      */
-    std::shared_ptr<SmartCardSpi> parse(
-        std::shared_ptr<CardSelectionResponseApi> cardSelectionResponse) const override;
+    const std::shared_ptr<SmartCardSpi> parse(
+        const std::shared_ptr<CardSelectionResponseApi> cardSelectionResponse) override;
 
     /**
      * {@inheritDoc}
@@ -115,9 +115,9 @@ private:
      *
      */
     static const int AID_MIN_LENGTH;
-    
+
     /**
-     * 
+     *
      */
     static const int AID_MAX_LENGTH;
 

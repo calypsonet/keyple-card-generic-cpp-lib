@@ -20,16 +20,16 @@ GenericCardAdapter::GenericCardAdapter(
   std::shared_ptr<CardSelectionResponseApi> cardSelectionResponse)
 : mSelectApplicationResponse(
       cardSelectionResponse->getSelectApplicationResponse() != nullptr ?
-          cardSelectionResponse->getSelectApplicationResponse()->getApdu() : 
+          cardSelectionResponse->getSelectApplicationResponse()->getApdu() :
           std::vector<uint8_t>()),
           mPowerOnData(cardSelectionResponse->getPowerOnData()) {}
-    
+
 const std::string& GenericCardAdapter::getPowerOnData() const
 {
     return mPowerOnData;
 }
 
-const std::vector<uint8_t>& GenericCardAdapter::getSelectApplicationResponse() const
+const std::vector<uint8_t> GenericCardAdapter::getSelectApplicationResponse() const
 {
     return mSelectApplicationResponse;
 }

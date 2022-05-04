@@ -60,11 +60,11 @@ public:
      *
      * @since 2.0.0
      */
-    const std::vector<uint8_t>& getSelectApplicationResponse() const override;
+    const std::vector<uint8_t> getSelectApplicationResponse() const override;
 
 private:
     /**
-     * 
+     *
      */
     const std::vector<uint8_t> mSelectApplicationResponse;
 

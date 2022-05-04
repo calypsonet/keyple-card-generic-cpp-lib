@@ -156,7 +156,7 @@ public:
      *
      * @since 2.0.0
      */
-    const std::vector<uint8_t> getAid() const override;
+    const std::vector<uint8_t>& getAid() const override;
 
     /**
      * {@inheritDoc}
@@ -181,37 +181,37 @@ public:
 
 private:
     /**
-     * 
+     *
      */
     static const int DEFAULT_SUCCESSFUL_CODE;
 
     /**
-     * 
+     *
      */
     std::string mCardProtocol;
-    
+
     /**
-     * 
+     *
      */
     std::string mPowerOnDataRegex;
 
     /**
-     * 
+     *
      */
     std::vector<uint8_t> mAid;
 
     /**
-     * 
+     *
      */
     FileOccurrence mFileOccurrence;
-    
+
     /**
-     * 
+     *
      */
     FileControlInformation mFileControlInformation;
 
     /**
-     * 
+     *
      */
     std::vector<int> mSuccessfulSelectionStatusWords;
 };
